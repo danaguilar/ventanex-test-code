@@ -1,8 +1,9 @@
 class PayAccountsController < ApplicationController
-
-  # TODO: Add lookup to Account class
+  LOAN_ACCOUNT_XML_FILE = "loan.xml"
+  LOAN_ACCOUNT_ATTRIBUTES = ["LoanNumber", "BorrowerFullNameUnformated"]
 
   def index
+    @loan_accounts = setup_loan_accounts
     @pay_accounts = PayAccount.all
   end
 
@@ -15,7 +16,12 @@ class PayAccountsController < ApplicationController
     redirect_to pay_accounts_url
   end
 
-  def pay_account_params
+  private def pay_account_params
     params.require(:pay_account).permit(:nickname, :account_number, :account_type)
+  end
+
+  private def setup_loan_accounts
+    account = Account.new(LOAN_ACCOUNT_XML_FILE)
+    account.find_attributes(*LOAN_ACCOUNT_ATTRIBUTES)
   end
 end
