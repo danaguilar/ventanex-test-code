@@ -1,0 +1,36 @@
+<%= form_with model: @pay_account, class: 'card account-form bg-light mt-4' do |form| %>
+  <h4 class="card-header">New Pay Account</h4>
+  <div class="form-group card-body">
+    <div class="container">
+    <div class="row my-3">
+      <%= form.label :nickname, class: "col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
+        <%= form.text_field :nickname, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row my-3">
+      <%= form.label :account_type, class: "col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
+        <%= form.select(
+          :account_type,
+          PayAccount.account_types.keys.map{|account_type| [account_type.humanize, account_type]},
+          {},
+          class: "form-control"
+        ) %>
+      </div>
+    </div>
+
+    <div class="row my-3">
+      <%= form.label :accounct_number, class: "col-sm-3 col-form-label" %>
+      <div class="col-sm-9">
+        <%= form.text_field :account_number, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="text-right">
+      <%= form.submit "Create", class: "btn btn-primary" %>
+    </div>
+    </div>
+    </div>
+<% end %>
