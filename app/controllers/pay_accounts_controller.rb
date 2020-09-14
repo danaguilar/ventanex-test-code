@@ -12,8 +12,12 @@ class PayAccountsController < ApplicationController
   end
 
   def create
-    PayAccount.create(pay_account_params)
-    redirect_to pay_accounts_url
+    @pay_account = PayAccount.new(pay_account_params)
+    if @pay_account.save
+      redirect_to pay_accounts_url
+    else
+      render :new
+    end
   end
 
   private def pay_account_params
