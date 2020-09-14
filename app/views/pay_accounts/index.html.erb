@@ -24,8 +24,8 @@
                 <td><%= pay_account.nickname %></td>
                 <td><%= pay_account.account_type.humanize %></td>
                 <td>
-                  <%= pay_account.account_number %>
-                  <button type="button" class="btn btn-sm btn-secondary">hide</button>
+                  <span data-account-number><%= pay_account.account_number %></span>
+                  <button type="button" data-hide-button class="btn btn-sm btn-secondary">hide</button>
                 </td>
                 <td>
                   <button type="button" class="btn btn-warning">Show</button>
