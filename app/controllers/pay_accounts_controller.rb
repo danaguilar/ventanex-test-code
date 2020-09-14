@@ -7,6 +7,10 @@ class PayAccountsController < ApplicationController
     @pay_accounts = PayAccount.all
   end
 
+  def show
+    @pay_account = PayAccount.find(params[:id])
+  end
+
   def new
     @pay_account = PayAccount.new
   end
@@ -18,6 +22,11 @@ class PayAccountsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    PayAccount.delete(params[:id])
+    redirect_to pay_accounts_url
   end
 
   private def pay_account_params

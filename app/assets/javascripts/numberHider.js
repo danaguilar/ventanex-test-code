@@ -1,9 +1,9 @@
-window.onload = () => {
-  $("[data-hide-button]").click((event) => {
-    var accountNumber = $(event.target).siblings("[data-account-number]")[0]
-    $(event.target).siblings("[data-account-number]")[0].textContent = sanitizeAccountNumber(accountNumber.textContent)
-  });
-};
+// Because of turbolinks we are unable to simply add events to individual elements since they may be reloaded without reloading the page
+// Instead we can bind the click event on the document itself and only fire the function if the event came from the given element
+$(document).on("click", "[data-hide-button]", (event) => {
+  var accountNumber = $(event.target).siblings("[data-account-number]")[0]
+  $(event.target).siblings("[data-account-number]")[0].textContent = sanitizeAccountNumber(accountNumber.textContent)
+})
 
 function sanitizeAccountNumber(accountNumber) {
   var portionToFilter = accountNumber.slice(0, -4);
